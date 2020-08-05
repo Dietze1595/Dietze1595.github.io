@@ -47,9 +47,8 @@
 
 
 <script>
-
+document.getElementById("result").innerHTML = "Mod Petition Dietze: " + localStorage.clickcount;
 function clickCounter() {
-  document.getElementById("result").innerHTML = "Mod Petition Dietze: " + localStorage.clickcount;
   if (typeof(Storage) !== "undefined") {
     if (localStorage.clickcount) {
       localStorage.clickcount = Number(localStorage.clickcount)+1;
