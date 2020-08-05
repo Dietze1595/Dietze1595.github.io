@@ -1,17 +1,37 @@
-<html>
+<!DOCTYPE HTML>
 <head>
-    <title>Space Clicker</title>
-</head>
+    <style>
+    #one{
+        width: 200px;
+        height: 200px;
+        border: 1px solid blue;
+    }
+    button{
+        width: 200px;
+        background: yellow;
+        box-shadow: 4px 4px 4px #333;
+    }
+    
+    </style>
+    <script type ="text/javascript">
+        var i = 1;
 
-<body>
-    <script type="text/javascript">
-    var clicks = 0;
-    function onClick() {
-        clicks += 1;
-        document.getElementById("clicks").innerHTML = clicks;
-    };
+        function myFunc() {
+            var one = document.getElementById("one");
+            if (one.innerHTML=="click the button"){
+                one.innerHTML = "You clicked the button"
+            } else {
+                i += 1;
+                one.innerHTML = "You clicked the button " + i + " time/s."
+            }
+
+        }
     </script>
-    <button type="button" onClick="onClick()">Click me</button>
-    <p>Clicks: <a id="clicks">0</a></p>
-
-</body></html>
+</head>
+<html>
+        <body>
+            <div id="one">click the button</div>
+            <button onclick="myFunc()"> Click </button>
+        </body>
+            
+</html>
