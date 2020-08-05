@@ -47,7 +47,7 @@
 
 
 <script>
-document.getElementById("result").innerHTML = "Mod Petition Dietze: " + localStorage.clickcount;
+document.getElementById("result").innerHTML = localStorage.clickcount + "Viewer möchten Dietze als MOD :*";
 function clickCounter() {
   if (typeof(Storage) !== "undefined") {
     if (localStorage.clickcount) {
@@ -55,7 +55,7 @@ function clickCounter() {
     } else {
       localStorage.clickcount = 1;
     }
-    document.getElementById("result").innerHTML = "Mod Petition Dietze: " + localStorage.clickcount;
+    document.getElementById("result").innerHTML = localStorage.clickcount + "Viewer möchten Dietze als MOD :*";
   } else {
     document.getElementById("result").innerHTML = "Sorry, your browser does not support web storage...";
   }
