@@ -1,20 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <title></title>
-
-    <link rel="stylesheet" href="style.css" />
-    <link rel="icon" href="images/favicon.png" />
-  </head>
-
-  <body>
-    <body>
-		<span id="playerElo"></span>
-	</body>
+	<span id="playerElo"></span>
 	
 	<script>
 	var oReq = new XMLHttpRequest();
@@ -46,10 +30,6 @@
 		avgKD = (KD / divid / 100).toFixed(2);
 		avgKR = (KR / divid / 100).toFixed(2);
 		document.getElementById("playerElo").innerHTML = "Avg. Kills: " + avgKills + " - Avg. HS: " + avgHs + "% - Avg. K/D: " + avgKD + " - Avg. K/R: " + avgKR;
+		console.log("Avg. Kills: " + avgKills + " - Avg. HS: " + avgHs + "% - Avg. K/D: " + avgKD + " - Avg. K/R: " + avgKR);
 	}
 	</script>
-	
-  </body>
-</html>
-
-
