@@ -1,60 +1,28 @@
-
-function reqListener () {
-    var obj = JSON.parse(this.responseText);
-    consoleText(obj.words, obj.id, obj.colors);
-}
-
 var oReq = new XMLHttpRequest();
-oReq.addEventListener("load", reqListener);
-oReq.open("GET", "data.json");
-oReq.send();
+oReq.addEventListener("load", getAvgData);
+oReq.open("GET", "https://api.faceit.com/stats/v1/stats/time/users/" + guid + "/games/csgo?size=20", true);
+oReq.send()    
+    
+function getAvgData() {
+    let json = JSON.parse(this.responseText);
+    if (json.length == 0)
+        return;
 
-// function([string1, string2],target id,[color1,color2])
-function consoleText(words, id, colors) {
-  if (colors === undefined) colors = ['#fff'];
-  var visible = true;
-  var con = document.getElementById('console');
-  var letterCount = 1;
-  var x = 1;
-  var waiting = false;
-  var target = document.getElementById(id)
-  target.setAttribute('style', 'color:' + colors[0])
-  window.setInterval(function() {
-
-    if (letterCount === 0 && waiting === false) {
-      waiting = true;
-      target.innerHTML = words[0].substring(0, letterCount)
-      window.setTimeout(function() {
-        var usedColor = colors.shift();
-        colors.push(usedColor);
-        var usedWord = words.shift();
-        words.push(usedWord);
-        x = 1;
-        target.setAttribute('style', 'color:' + colors[0])
-        letterCount += x;
-        waiting = false;
-      }, 1000)
-    } else if (letterCount === words[0].length + 1 && waiting === false) {
-      waiting = true;
-      window.setTimeout(function() {
-        x = -1;
-        letterCount += x;
-        waiting = false;
-      }, 1000)
-    } else if (waiting === false) {
-      target.innerHTML = words[0].substring(0, letterCount)
-      letterCount += x;
+    let kills = 0, HS = 0, divid = 0, KD = 0, KR = 0;
+    for (i = 0; i < json.length; i++) {
+        if (json[i].gameMode !== '5v5') {
+            length = length + 1;
+        } else {
+            divid = divid + 1;
+            kills = parseInt(json[i].i6) + kills;
+            HS = parseInt(json[i].c4 * 100) + HS;
+            KD = parseInt(json[i].c2 * 100) + KD;
+            KR = parseInt(json[i].c3 * 100) + KR;
+        }
     }
-  }, 120)
-  window.setInterval(function() {
-    if (visible === true) {
-      con.className = 'console-underscore hidden'
-      visible = false;
 
-    } else {
-      con.className = 'console-underscore'
-
-      visible = true;
-    }
-  }, 400)
+    avgKills = Math.round(kills / divid);
+    avgHs = Math.round(HS / divid / 100);
+    avgKD = (KD / divid / 100).toFixed(2);
+    avgKR = (KR / divid / 100).toFixed(2);
 }
