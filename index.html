@@ -19,81 +19,23 @@
 		</style>
 	</head>
 	<body>
-    <div class="uk-light wrap uk-background-norepeat uk-background-cover uk-background-center-center uk-cover-container uk-background-secondary">
-      <img data-srcset="https://picsum.photos/640/700/?image=482 640w,
-                   https://picsum.photos/960/700/?image=482 960w,
-                   https://picsum.photos/1200/900/?image=482 1200w,
-                   https://picsum.photos/2000/1000/?image=482 2000w"
-           sizes="100vw"
-           data-src="https://picsum.photos/1200/900/?image=482" alt="" data-uk-cover data-uk-img
-      >
-      <div class="uk-flex uk-flex-center uk-flex-middle uk-height-viewport uk-position-z-index uk-position-relative" data-uk-height-viewport="min-height: 400" style="background-color: rgba(0, 0, 0, 0.5);">
+		
+		<p id="result"></p>
 
-        <!-- NAV -->
-        <div class="uk-position-top">
-          <div class="uk-container uk-container-small">
-            <nav class="uk-navbar-container uk-navbar-transparent" data-uk-navbar>
-              <div class="uk-navbar-left">
-              </div>
-              <div class="uk-navbar-right">
-                <ul class="uk-navbar-nav">
-                  <li class="uk-active uk-visible@m"><a href="" data-uk-icon="home"></a></li>
-                </ul>
-              </div>
-            </nav>
-          </div>
-        </div>
-        <!-- /NAV -->
-        <!-- TEXT -->
-        <div class="uk-container uk-container-small uk-flex-auto uk-text-center" data-uk-scrollspy="target: > .animate; cls: uk-animation-slide-bottom-small uk-invisible; delay: 300">
-          <h1 class="uk-heading-primary animate uk-invisible" style="font-weight: 700;">Wird Dietze jemals Mod werden? <img src="https://static-cdn.jtvnw.net/emoticons/v1/302983758/3.0" alt="1"></h1>
-          <div class="uk-width-4-5@m uk-margin-auto animate uk-invisible">
-            <p class="lead">Unterstütze mich dabei ein MOD bei rAx1337 zu werden. Drücke hierbei den Butten für deine Stimme <img src="https://cdn.betterttv.net/emote/5e277e7f1df9195f1a4cc1ba/1x" alt="1"> </p>
-          </div>
-          <div class="uk-margin-medium-top animate uk-invisible" data-uk-margin data-uk-scrollspy-class="uk-animation-fade uk-invisible">
-            <a onclick="clickCounter()" class="uk-button uk-button-primary uk-button-large uk-width-2-3 uk-width-auto@s" data-uk-icon="happy" title="Learn More">DRÜCK MICH</a>
-          </div>
-		  <div class="uk-width-4-5@m uk-margin-auto animate uk-invisible">
-            <p class="lead"> </p>
-          </div>
-		  <div class="uk-width-4-5@m uk-margin-auto animate uk-invisible">
-            <div id="result"></div>
-			<img src="https://static-cdn.jtvnw.net/emoticons/v1/302998965/2.0" alt="1"> 
-			<img src="https://cdn.betterttv.net/emote/5d38aaa592fc550c2d5996b8/2x" alt="1"> 
-			
-			
-        </div>
 		
-        </div>
-		
-        <!-- /TEXT -->
-        <!-- FOOT -->
-        <div class="uk-position-bottom-center uk-position-small">
-          <span class="uk-text-small uk-text-center">© 2020 | <a href="https://github.com/Dietze1595" title="Created by Dietze">Created by Dietze_</a> | Built with <a href="http://getuikit.com" title="Visit UIkit 3 site" target="_blank" data-uk-tooltip><span data-uk-icon="uikit"></span></a></span>
-        </div>
-        <!-- /FOOT -->
-      </div>
-    </div>
-		<!-- /OFFCANVAS -->
-		
-		<!-- JS FILES -->
-		<script src="https://cdn.jsdelivr.net/npm/uikit@latest/dist/js/uikit.min.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/uikit@latest/dist/js/uikit-icons.min.js"></script>
 		
 		<script>
-		document.getElementById("result").innerHTML = localStorage.clickcount + " Personen wünschen sich Dietze als Mod";
-		function clickCounter() {
-		  if (typeof(Storage) !== "undefined") {
-			if (localStorage.clickcount) {
-			  localStorage.clickcount = Number(localStorage.clickcount)+1;
-			} else {
-			  localStorage.clickcount = 1;
-			}
-			document.getElementById("result").innerHTML = localStorage.clickcount + " Personen wünschen sich Dietze als Mod";
-		  } else {
-			document.getElementById("result").innerHTML = "Sorry, your browser does not support web storage...";
-		  }
+		    var oReq = new XMLHttpRequest();
+		    oReq.addEventListener("load", getLastMatch);
+		    oReq.open("GET", "https://api.faceit.com/stats/v1/stats/time/users/62d12eaa-b0a6-4f8e-a1b9-c0c742d95cb1/games/csgo?size=1");
+		    oReq.send();
+			
+		function getFACEITusername() {
+    			let json = JSON.parse(this.responseText);
+			let results = json.payload
+			document.getElementById('result').InnerHTML = results;
 		}
+			
 		</script>
 		
 	</body>
