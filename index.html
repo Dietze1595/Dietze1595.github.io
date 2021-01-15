@@ -1,38 +1,30 @@
-	<pre id="playerElo" style="word-wrap: break-word; white-space: pre-wrap;"></pre>
-	
-	<script>
-	var oReq = new XMLHttpRequest();
-	oReq.addEventListener("load", getAvgData);
-	oReq.open("GET", "https://api.faceit.com/stats/v1/stats/time/users/62d12eaa-b0a6-4f8e-a1b9-c0c742d95cb1/games/csgo", true);
-	oReq.send()
-	
-	
-	function getAvgData() {
-        var test = JSON.parse(this.responseText);
-		if (test.length == 0)
-			return;
-
-		var kills = 0, HS = 0, divid = 0, KD = 0, KR = 0;
-		for (i = 0; i < test.length; i++) {
-			if (test[i].gameMode !== '5v5') {
-				length = length + 1;
-			} else {
-				divid = divid + 1;
-				kills = parseInt(test[i].i6) + kills;
-				HS = parseInt(test[i].c4 * 100) + HS;
-				KD = parseInt(test[i].c2 * 100) + KD;
-				KR = parseInt(test[i].c3 * 100) + KR;
-			}
-		}
-
-		avgKills = Math.round(kills / divid);
-		avgHs = Math.round(HS / divid / 100);
-		avgKD = (KD / divid / 100).toFixed(2);
-		avgKR = (KR / divid / 100).toFixed(2);
-		document.getElementById("playerElo").innerHTML = "Avg. Kills: " + avgKills + " - Avg. HS: " + avgHs + "% - Avg. K/D: " + avgKD + " - Avg. K/R: " + avgKR;
-		console.log("Avg. Kills: " + avgKills + " - Avg. HS: " + avgHs + "% - Avg. K/D: " + avgKD + " - Avg. K/R: " + avgKR);
-	}
-	</script>
-
-
-
+<table style="width:100%">
+  <tr>
+    <th>Teamname</th>
+    <th>Punkte</th>
+  </tr>
+  <tr>
+    <td>FLEISCHKÄSE VOM GLOBUS</td>
+    <td>1</td>
+  </tr>
+<tr>
+    <td>MOON MOON</td>
+    <td>3</td>
+  </tr>
+<tr>
+    <td>EDUCTAED GUEST/td>
+    <td>1</td>
+  </tr>
+<tr>
+    <td>DIE VIER ????</td>
+    <td>4</td>
+  </tr>
+	<tr>
+    <td>DIE VIER ????</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>DIE VIER ????</td>
+    <td></td>
+  </tr>
+</table>
